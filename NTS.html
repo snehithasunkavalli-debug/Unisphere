@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>National Technical Symposium</title>
+</head>
+<body>
+    <h1>National Technical Symposium Registration</h1>
+    <form>
+        <label>Participant Name:</label>
+        <input type="text" name="name"
+               placeholder="Enter your name"
+               required>
+        <br><br>
+        <label>Register Number:</label>
+        <input type="text" name="regno"
+               placeholder="Enter register number"
+               pattern="[A-Za-z0-9]{5,15}"
+               minlength="5"
+               maxlength="15"
+               required>
+        <br><br>
+        <label>College Name:</label>
+        <input type="text" name="college"
+               placeholder="Enter college name"
+               required>
+        <br><br>
+        <label>Email ID:</label>
+        <input type="email" name="email"
+               placeholder="Enter email address"
+               required>
+        <br><br>
+        <label>Mobile Number:</label>
+        <input type="tel" name="mobile"
+               placeholder="Enter 10-digit mobile number"
+               pattern="[0-9]{10}"
+               minlength="10"
+               maxlength="10"
+               required>
+        <br><br>
+        <label>Date of Birth:</label>
+        <input type="date" name="dob" required>
+        <br><br>
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="male" required> Male
+        <input type="radio" name="gender" value="female"> Female
+        <input type="radio" name="gender" value="other"> Other
+        <br><br>
+        <label>Department:</label>
+        <select name="department" required>
+            <option value="">Select Department</option>
+            <option value="cse">Computer Science</option>
+            <option value="ece">Electronics</option>
+            <option value="eee">Electrical</option>
+            <option value="mech">Mechanical</option>
+            <option value="civil">Civil</option>
+        </select>
+        <br><br>
+        <label>Technical Skills:</label>
+        <input type="checkbox" name="skills" value="html"> HTML
+        <input type="checkbox" name="skills" value="css"> CSS
+        <input type="checkbox" name="skills" value="javascript"> JavaScript
+        <input type="checkbox" name="skills" value="python"> Python
+        <br><br>
+        <label>Upload Student ID Card:</label>
+        <input type="file" name="idcard"
+               accept=".jpg,.jpeg,.png,.pdf"
+               required>
+        <br><br>
+        <label>Event Date:</label>
+        <input type="date" name="eventdate" required>
+        <br><br>
+        <h2>Symposium Promotional Video</h2>
+        <video width="500" controls>
+            <source src="symposium.mp4" type="video/mp4">
+        </video>
+        <br><br>
+        <h2>Welcome Message</h2>
+        <audio controls>
+            <source src="welcome.mp3" type="audio/mpeg">
+        </audio>
+        <br><br>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Analytics & Executive Reports</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: #f8fafc; color: #1e293b; min-height: 100vh; }
+        .container { max-width: 1000px; margin: 40px auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        h1 { color: #1e3a8a; font-size: 28px; margin-bottom: 8px; }
+        .nav-dash { margin-bottom: 25px; display: flex; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; }
+        .nav-dash a { color: #2563eb; text-decoration: none; font-weight: 600; font-size: 14px; padding: 6px 12px; border-radius: 6px; }
+        .nav-dash a:hover { background: #eff6ff; }
+        .nav-dash a.active { background: #1e3a8a; color: white; }
+        .grid-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+        .card-stat { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; text-align: center; }
+        .card-stat .val { font-size: 28px; font-weight: bold; color: #2563eb; }
+        .card-stat .lbl { font-size: 12px; color: #64748b; text-transform: uppercase; margin-top: 4px; }
+        .chart-section { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 25px; }
+        .chart-section h3 { color: #1e3a8a; font-size: 16px; margin-bottom: 15px; }
+        .bar-row { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; font-size: 13px; }
+        .bar-lbl { width: 140px; color: #475569; font-weight: 500; }
+        .bar-bg { flex-grow: 1; height: 18px; background: #e2e8f0; border-radius: 10px; overflow: hidden; }
+        .bar-fill { height: 100%; background: #3b82f6; border-radius: 10px; }
+        .bar-val { width: 50px; text-align: right; font-weight: bold; color: #1e293b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>University Institutional Performance Reports</h1>
+        <p style="color: #64748b; margin-bottom: 15px;">Real-time enrollment analytics, faculty distribution, examination outcomes, and placement trends.</p>
+
+        <div class="nav-dash">
+            <a href="dashboard.html">&larr; Back to Dashboard</a>
+            <a href="home.html">Home</a>
+            <a href="directory.html">Employee Directory</a>
+            <a href="payroll.html">Payroll</a>
+            <a href="leaves.html">Leave Requests</a>
+            <a href="reports.html" class="active">Reports</a>
+            <a href="Final_Website.html" style="background:#fef3c7; color:#92400e;">UniSphere Portal</a>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-stat">
+                <div class="val">28,450</div>
+                <div class="lbl">Total Enrolled Students</div>
+            </div>
+            <div class="card-stat">
+                <div class="val">1,240</div>
+                <div class="lbl">Active Faculty & Staff</div>
+            </div>
+            <div class="card-stat">
+                <div class="val">96.4%</div>
+                <div class="lbl">Semester Pass Rate</div>
+            </div>
+            <div class="card-stat">
+                <div class="val">850+</div>
+                <div class="lbl">Research Papers (2026)</div>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <h3>Student Enrollment by School</h3>
+            <div class="bar-row">
+                <div class="bar-lbl">SCOPE (Computer Sci)</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 85%; background:#2563eb;"></div></div>
+                <div class="bar-val">9,800</div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-lbl">SENSE (Electronics)</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 60%; background:#0284c7;"></div></div>
+                <div class="bar-val">6,200</div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-lbl">SMEC (Mechanical)</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 45%; background:#059669;"></div></div>
+                <div class="bar-val">4,500</div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-lbl">VITBS (Business)</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 35%; background:#d97706;"></div></div>
+                <div class="bar-val">3,800</div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-lbl">SSL (Law & Sciences)</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 40%; background:#7c3aed;"></div></div>
+                <div class="bar-val">4,150</div>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <h3>Staff Attendance & Leave Compliance (Current Month)</h3>
+            <div class="bar-row">
+                <div class="bar-lbl">Present on Campus</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 92%; background:#16a34a;"></div></div>
+                <div class="bar-val">92%</div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-lbl">Approved On-Duty (OD)</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 5%; background:#3b82f6;"></div></div>
+                <div class="bar-val">5%</div>
+            </div>
+            <div class="bar-row">
+                <div class="bar-lbl">Casual / Medical Leave</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 3%; background:#f59e0b;"></div></div>
+                <div class="bar-val">3%</div>
+            </div>
+        </div>
+
+        <div style="text-align: right;">
+            <button onclick="window.print()" style="background:#1e3a8a; color:white; padding:10px 20px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Export / Print Annual Audit Report</button>
+        </div>
+    </div>
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>

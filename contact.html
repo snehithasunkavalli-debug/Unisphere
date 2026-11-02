@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - University Helpdesk</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: #f8fafc; color: #1e293b; min-height: 100vh; }
+        .container { max-width: 900px; margin: 40px auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        h1 { color: #1e3a8a; font-size: 28px; margin-bottom: 8px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 25px; }
+        .info-card { background: #f1f5f9; border-radius: 12px; padding: 25px; border: 1px solid #e2e8f0; }
+        .info-card h3 { color: #1e3a8a; font-size: 18px; margin-bottom: 15px; border-bottom: 2px solid #cbd5e1; padding-bottom: 8px; }
+        .info-card p { font-size: 14px; color: #475569; line-height: 1.6; margin-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 5px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; }
+        .btn-send { background: #1e3a8a; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%; }
+        .btn-send:hover { background: #1d4ed8; }
+        .nav-back { margin-bottom: 20px; }
+        .nav-back a { color: #2563eb; text-decoration: none; font-weight: 600; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-back">
+            <a href="Final_Website.html">&larr; Back to UniSphere Master Portal</a> | 
+            <a href="home.html">Home</a> | 
+            <a href="DOCS.html">SCOPE Dept</a>
+        </div>
+        <h1>Contact Us & Campus Helpdesk</h1>
+        <p style="color: #64748b;">Have a question regarding admissions, academic courses, or campus services? Reach out to us.</p>
+
+        <div class="grid-2">
+            <div class="info-card">
+                <h3>Campus Location & Contacts</h3>
+                <p><strong>Campus Address:</strong><br>Vellore Institute of Technology (VIT),<br>Katpadi, Vellore, Tamil Nadu - 632014, India.</p>
+                <p><strong>Admissions Helpline:</strong><br>+91-416-220 2020 / 220 2168</p>
+                <p><strong>Department of Computer Science:</strong><br>Email: scope.office@vit.ac.in<br>Phone: +91-416-220 2301</p>
+                <p><strong>Student Support:</strong><br>Snehitha Sunkavalli (Reg: 24MIC0058)<br>Email: snehitha.sunkavalli2024@vitstudent.ac.in</p>
+                <p><strong>Emergency Ambulance:</strong><br>Ext. 3333 / +91-416-220 3333</p>
+            </div>
+
+            <div>
+                <form id="contactForm" onsubmit="event.preventDefault(); submitInquiry();">
+                    <div class="form-group">
+                        <label>Your Full Name</label>
+                        <input type="text" id="cName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="cEmail" placeholder="name@domain.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category of Inquiry</label>
+                        <select id="cCat">
+                            <option>Academic Admissions</option>
+                            <option>SCOPE Department & Courses</option>
+                            <option>Examination & Results</option>
+                            <option>Hostel & Campus Facilities</option>
+                            <option>Technical / Portal Support</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message / Description</label>
+                        <textarea id="cMsg" rows="4" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-send">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitInquiry() {
+            let name = document.getElementById("cName").value;
+            alert("Thank you, " + name + "! Your inquiry has been logged with the university central helpdesk.");
+            document.getElementById("contactForm").reset();
+        }
+    </script>
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>

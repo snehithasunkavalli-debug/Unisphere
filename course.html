@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration</title>
+    <link rel="stylesheet" href="course.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Course Registration Form</h1>
+
+        <form id="courseForm">
+
+            <label for="studentName">Student Name</label>
+            <input type="text" id="studentName" placeholder="Enter student name">
+            <div id="nameError" class="error"></div>
+
+            <label for="department">Department</label>
+            <select id="department">
+                <option value="">Select Department</option>
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+            </select>
+            <div id="departmentError" class="error"></div>
+
+            <label for="languages">Programming Languages</label>
+            <select id="languages" multiple size="4">
+                <option value="Java">Java</option>
+                <option value="Python">Python</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="C++">C++</option>
+            </select>
+            <small>Hold Ctrl and select multiple languages.</small>
+            <div id="languageError" class="error"></div>
+
+            <button type="submit">Register</button>
+
+        </form>
+
+        <div id="output"></div>
+    </div>
+
+    <script src="course.js"></script>
+
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>

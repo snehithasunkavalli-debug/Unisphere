@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniSphere - Integrated Smart Campus Enterprise Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-accent: #3b82f6;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --bg-body: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { background: var(--bg-body); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: white;
+            padding: 16px 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .brand-logo {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+            font-size: 22px;
+            font-weight: 800;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);
+        }
+        .brand-text h1 { font-size: 20px; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; }
+        .brand-text p { font-size: 12px; color: #94a3b8; font-weight: 500; }
+        .nav-links { display: flex; gap: 14px; align-items: center; }
+        .nav-item {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover { color: white; background: rgba(255,255,255,0.1); }
+        .nav-item.highlight {
+            background: #fde047;
+            color: #0f172a;
+            font-weight: 700;
+        }
+        .nav-item.highlight:hover { background: #facc15; }
+
+        /* Hero */
+        .hero {
+            background: radial-gradient(circle at top right, #1e40af, #0f172a);
+            color: white;
+            padding: 70px 24px 80px 24px;
+            text-align: center;
+            position: relative;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(147, 197, 253, 0.3);
+            color: #93c5fd;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .hero h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 17px;
+            color: #94a3b8;
+            max-width: 760px;
+            margin: 0 auto 35px auto;
+            line-height: 1.6;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 18px 24px 18px 56px;
+            font-size: 16px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.95);
+            color: #0f172a;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            background: #ffffff;
+            border-color: #60a5fa;
+            box-shadow: 0 10px 35px rgba(59, 130, 246, 0.4);
+        }
+        .search-icon {
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #64748b;
+        }
+
+        /* Quick Stats */
+        .stats-bar {
+            max-width: 1140px;
+            margin: -35px auto 40px auto;
+            background: white;
+            border-radius: 16px;
+            padding: 24px 35px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 1px solid var(--border-color);
+            position: relative;
+            z-index: 10;
+        }
+        .stat-item { text-align: center; border-right: 1px solid var(--border-color); }
+        .stat-item:last-child { border-right: none; }
+        .stat-number { font-size: 28px; font-weight: 800; color: var(--primary); }
+        .stat-label { font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; margin-top: 4px; }
+
+        /* Main Container */
+        .main-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px 60px 20px;
+            flex-grow: 1;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .tab-btn {
+            background: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .tab-btn:hover { background: #f1f5f9; color: var(--text-main); }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+        }
+
+        /* Modules Grid */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .module-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+        .tag-category {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+        .card-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .card-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f1f5f9;
+            color: var(--primary);
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 13.5px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .module-card:hover .card-action {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Color classes */
+        .cat-academics { background: #dbeafe; color: #1e40af; }
+        .icon-academics { background: #eff6ff; color: #2563eb; }
+        
+        .cat-scope { background: #e0e7ff; color: #3730a3; }
+        .icon-scope { background: #eef2ff; color: #4f46e5; }
+        
+        .cat-erp { background: #fef3c7; color: #92400e; }
+        .icon-erp { background: #fffbeb; color: #d97706; }
+        
+        .cat-facilities { background: #dcfce7; color: #166534; }
+        .icon-facilities { background: #f0fdf4; color: #16a34a; }
+        
+        .cat-clubs { background: #fce7f3; color: #9d174d; }
+        .icon-clubs { background: #fdf2f8; color: #db2777; }
+        
+        .cat-smart { background: #ccfbf1; color: #115e59; }
+        .icon-smart { background: #f0fdfa; color: #0d9488; }
+
+        /* Student Attribution Banner */
+        .student-banner {
+            background: linear-gradient(135deg, #1e3a8a, #172554);
+            border-radius: 18px;
+            padding: 30px 40px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.25);
+        }
+        .student-details h3 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+        .student-details p { color: #cbd5e1; font-size: 14px; margin-bottom: 4px; }
+        .portfolio-btn {
+            background: #fde047;
+            color: #0f172a;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        .portfolio-btn:hover { background: #facc15; transform: scale(1.03); }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid #1e293b;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 14px 20px; flex-direction: column; gap: 12px; }
+            .stats-bar { grid-template-columns: 1fr 1fr; margin-top: 15px; }
+            .hero h2 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-brand">
+            <div class="brand-logo">U</div>
+            <div class="brand-text">
+                <h1>UniSphere</h1>
+                <p>VIT Smart Campus Master Portal</p>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="home.html" class="nav-item">University Home</a>
+            <a href="DOCS.html" class="nav-item">SCOPE Dept</a>
+            <a href="dashboard.html" class="nav-item">Staff ERP</a>
+            <a href="LMS.html" class="nav-item">Central Library</a>
+            <a href="HMS.html" class="nav-item">Health CarePlus</a>
+            <a href="shopindex.html" class="nav-item">Campus Store</a>
+            <a href="gallery.html" class="nav-item">Media Gallery</a>
+            <a href="Protofolio.html" class="nav-item highlight">Student Portfolio</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">Centralized Campus Enterprise Operating System</div>
+        <h2>All University Systems. One Intelligent Hub.</h2>
+        <p>Seamlessly navigate through admissions, course registration, staff HR ERP, library catalogs, hospital health services, student clubs, and smart city campus utilities.</p>
+        
+        <div class="search-container">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="moduleSearch" class="search-input" placeholder="Search any campus service, form, portal, or lab..." onkeyup="filterModules()">
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">45+</div>
+            <div class="stat-label">Connected Modules</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Academic Schools</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">28,000+</div>
+            <div class="stat-label">Active Students</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Operational Up-Time</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Category Tabs -->
+        <div class="filter-tabs">
+            <button class="tab-btn active" onclick="filterCategory('all')">All Services (45)</button>
+            <button class="tab-btn" onclick="filterCategory('academics')">Academics & Students</button>
+            <button class="tab-btn" onclick="filterCategory('scope')">SCOPE Department</button>
+            <button class="tab-btn" onclick="filterCategory('erp')">Staff & HR ERP</button>
+            <button class="tab-btn" onclick="filterCategory('facilities')">Campus Facilities & Health</button>
+            <button class="tab-btn" onclick="filterCategory('clubs')">Clubs & Recreation</button>
+            <button class="tab-btn" onclick="filterCategory('smart')">Smart Campus & Labs</button>
+        </div>
+
+        <!-- Modules Grid -->
+        <div class="modules-grid" id="modulesGrid">
+
+            <!-- ACADEMICS & STUDENTS -->
+            <div class="module-card" data-category="academics">
+                <div class="card-top">
+                    <div class="card-icon icon-academics">&#128187;</div>
+                    <span class="tag-category cat-academics">Academics</span>
+                </div>
+                <div class="card-title">Course Registration</div>
+                <div class="card-desc">Comprehensive course enrollment system with live prerequisite checks, credit counting, and faculty slot selection.</div>
+                <a href="course.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="academics">
+                <div class="card-top">
+                    <div class="card-icon icon-academics">&#127891;</div>
+                    <span class="tag-category cat-academics">Academics</span>
+                </div>
+                <div class="card-title">Student Admission Portal</div>
+                <div class="card-desc">Formal university student registration form capturing biographical, academic, and contact information.</div>
+                <a href="studentregistration.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="academics">
+                <div class="card-top">
+                    <div class="card-icon icon-academics">&#128272;</div>
+                    <span class="tag-category cat-academics">Academics</span>
+                </div>
+                <div class="card-title">Student Portal Login</div>
+                <div class="card-desc">Single sign-on authentication interface for students to access grades, attendance, and timetable schedules.</div>
+                <a href="student.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="academics">
+                <div class="card-top">
+                    <div class="card-icon icon-academics">&#128100;</div>
+                    <span class="tag-category cat-academics">Academics</span>
+                </div>
+                <div class="card-title">Student Account Portal</div>
+                <div class="card-desc">Secondary student authentication gateway with audio instructions and self-service account recovery.</div>
+                <a href="stulog.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="academics">
+                <div class="card-top">
+                    <div class="card-icon icon-academics">&#128269;</div>
+                    <span class="tag-category cat-academics">Academics</span>
+                </div>
+                <div class="card-title">Student Records Search</div>
+                <div class="card-desc">Real-time student registry query tool searching by register number, name, program, and academic year.</div>
+                <a href="stusearch.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="academics">
+                <div class="card-top">
+                    <div class="card-icon icon-academics">&#127942;</div>
+                    <span class="tag-category cat-academics">Academics</span>
+                </div>
+                <div class="card-title">Snehitha Sunkavalli Portfolio</div>
+                <div class="card-desc">Academic achievements, technical skills, and background of student Snehitha Sunkavalli (Reg: 24MIC0058).</div>
+                <a href="Protofolio.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="academics">
+                <div class="card-top">
+                    <div class="card-icon icon-academics">&#127979;</div>
+                    <span class="tag-category cat-academics">Academics</span>
+                </div>
+                <div class="card-title">University Portal Landing</div>
+                <div class="card-desc">Official welcoming entrance page for Vellore Institute of Technology institution members.</div>
+                <a href="Index.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <!-- SCOPE DEPARTMENT -->
+            <div class="module-card" data-category="scope">
+                <div class="card-top">
+                    <div class="card-icon icon-scope">&#127963;</div>
+                    <span class="tag-category cat-scope">SCOPE Dept</span>
+                </div>
+                <div class="card-title">Department Main (DOCS)</div>
+                <div class="card-desc">School of Computer Science and Engineering main hub with navigation to overview, faculty, and research.</div>
+                <a href="DOCS.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="scope">
+                <div class="card-top">
+                    <div class="card-icon icon-scope">&#128214;</div>
+                    <span class="tag-category cat-scope">SCOPE Dept</span>
+                </div>
+                <div class="card-title">Department Overview</div>
+                <div class="card-desc">Detailed departmental vision, mission statements, ABET/NBA accreditations, and supercomputing labs.</div>
+                <a href="overview.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="scope">
+                <div class="card-top">
+                    <div class="card-icon icon-scope">&#128220;</div>
+                    <span class="tag-category cat-scope">SCOPE Dept</span>
+                </div>
+                <div class="card-title">Academic Degree Programs</div>
+                <div class="card-desc">Degree programs including Integrated M.Tech (CSE), B.Tech, M.Tech, and Ph.D. curricula.</div>
+                <a href="programs.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="scope">
+                <div class="card-top">
+                    <div class="card-icon icon-scope">&#128104;&#8205;&#127979;</div>
+                    <span class="tag-category cat-scope">SCOPE Dept</span>
+                </div>
+                <div class="card-title">Faculty Directory</div>
+                <div class="card-desc">Comprehensive roster of professors, researchers, office cabins, emails, and specialization areas.</div>
+                <a href="faculty.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="scope">
+                <div class="card-top">
+                    <div class="card-icon icon-scope">&#128300;</div>
+                    <span class="tag-category cat-scope">SCOPE Dept</span>
+                </div>
+                <div class="card-title">Research Centers & Labs</div>
+                <div class="card-desc">Breakthrough research in Cloud Computing, Cognitive AI, Big Data Hadoop clusters, and IoT security.</div>
+                <a href="research.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="scope">
+                <div class="card-top">
+                    <div class="card-icon icon-scope">&#128222;</div>
+                    <span class="tag-category cat-scope">SCOPE Dept</span>
+                </div>
+                <div class="card-title">Department Helpdesk</div>
+                <div class="card-desc">Official contact information, dean office lines, emergency ambulance, and student inquiry feedback form.</div>
+                <a href="contact.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <!-- STAFF & HR ERP -->
+            <div class="module-card" data-category="erp">
+                <div class="card-top">
+                    <div class="card-icon icon-erp">&#128202;</div>
+                    <span class="tag-category cat-erp">Staff ERP</span>
+                </div>
+                <div class="card-title">Employee Central Dashboard</div>
+                <div class="card-desc">Administrative ERP hub connecting staff directories, monthly payroll, leave management, and audit reports.</div>
+                <a href="dashboard.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="erp">
+                <div class="card-top">
+                    <div class="card-icon icon-erp">&#128271;</div>
+                    <span class="tag-category cat-erp">Staff ERP</span>
+                </div>
+                <div class="card-title">Staff Portal Login</div>
+                <div class="card-desc">Secure credential authentication for university faculty and administrative staff members.</div>
+                <a href="employee.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="erp">
+                <div class="card-top">
+                    <div class="card-icon icon-erp">&#128101;</div>
+                    <span class="tag-category cat-erp">Staff ERP</span>
+                </div>
+                <div class="card-title">Campus Staff Directory</div>
+                <div class="card-desc">Interactive directory of administrative and teaching personnel with phone extensions and live search.</div>
+                <a href="directory.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="erp">
+                <div class="card-top">
+                    <div class="card-icon icon-erp">&#128181;</div>
+                    <span class="tag-category cat-erp">Staff ERP</span>
+                </div>
+                <div class="card-title">Staff Payroll & Payslips</div>
+                <div class="card-desc">Interactive compensation calculator and official monthly payslip generator with DA, HRA, and PF deductions.</div>
+                <a href="payroll.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="erp">
+                <div class="card-top">
+                    <div class="card-icon icon-erp">&#128197;</div>
+                    <span class="tag-category cat-erp">Staff ERP</span>
+                </div>
+                <div class="card-title">Leave Request Management</div>
+                <div class="card-desc">Online leave application portal with live balance tracking for Casual, Earned, and Medical leaves.</div>
+                <a href="leaves.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="erp">
+                <div class="card-top">
+                    <div class="card-icon icon-erp">&#128200;</div>
+                    <span class="tag-category cat-erp">Staff ERP</span>
+                </div>
+                <div class="card-title">Institutional Analytics Reports</div>
+                <div class="card-desc">Visual executive analytics for enrollment statistics, pass rates, research output, and compliance audits.</div>
+                <a href="reports.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="erp">
+                <div class="card-top">
+                    <div class="card-icon icon-erp">&#128221;</div>
+                    <span class="tag-category cat-erp">Staff ERP</span>
+                </div>
+                <div class="card-title">Employee Onboarding</div>
+                <div class="card-desc">New employee enrollment portal with multi-media welcome guides and qualification records.</div>
+                <a href="empreg.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="erp">
+                <div class="card-top">
+                    <div class="card-icon icon-erp">&#129663;</div>
+                    <span class="tag-category cat-erp">Staff ERP</span>
+                </div>
+                <div class="card-title">Digital Employee ID Card</div>
+                <div class="card-desc">Digital university identity credential generator formatted with barcode, designation, and blood group.</div>
+                <a href="EMPID.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="erp">
+                <div class="card-top">
+                    <div class="card-icon icon-erp">&#128100;</div>
+                    <span class="tag-category cat-erp">Staff ERP</span>
+                </div>
+                <div class="card-title">Employee Profile Viewer</div>
+                <div class="card-desc">Detailed personnel profile viewer displaying departmental appointment, service history, and qualifications.</div>
+                <a href="Emp.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <!-- CAMPUS FACILITIES & HEALTH -->
+            <div class="module-card" data-category="facilities">
+                <div class="card-top">
+                    <div class="card-icon icon-facilities">&#128218;</div>
+                    <span class="tag-category cat-facilities">Facilities</span>
+                </div>
+                <div class="card-title">Central Library (LMS)</div>
+                <div class="card-desc">Campus library management portal with print volume searches, digital library access, and RFID circulation.</div>
+                <a href="LMS.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="facilities">
+                <div class="card-top">
+                    <div class="card-icon icon-facilities">&#127973;</div>
+                    <span class="tag-category cat-facilities">Facilities</span>
+                </div>
+                <div class="card-title">CarePlus Health Center (HMS)</div>
+                <div class="card-desc">On-campus multi-specialty healthcare facility header with department listings and emergency services.</div>
+                <a href="HMS.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="facilities">
+                <div class="card-top">
+                    <div class="card-icon icon-facilities">&#129658;</div>
+                    <span class="tag-category cat-facilities">Facilities</span>
+                </div>
+                <div class="card-title">Hospital Services Overview</div>
+                <div class="card-desc">Detailed portal highlighting inpatient care, diagnostic radiology, 24/7 pharmacy, and physician shifts.</div>
+                <a href="HMW.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="facilities">
+                <div class="card-top">
+                    <div class="card-icon icon-facilities">&#9877;&#65039;</div>
+                    <span class="tag-category cat-facilities">Facilities</span>
+                </div>
+                <div class="card-title">Hospital Doctor Roster</div>
+                <div class="card-desc">Comprehensive directory of university medical specialists, consultation timings, and OPD chambers.</div>
+                <a href="hospital.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="facilities">
+                <div class="card-top">
+                    <div class="card-icon icon-facilities">&#129657;</div>
+                    <span class="tag-category cat-facilities">Facilities</span>
+                </div>
+                <div class="card-title">Patient Appointment & Billing</div>
+                <div class="card-desc">Interactive outpatient appointment booking portal with medical fee estimation and billing confirmation.</div>
+                <a href="patient.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="facilities">
+                <div class="card-top">
+                    <div class="card-icon icon-facilities">&#128722;</div>
+                    <span class="tag-category cat-facilities">Facilities</span>
+                </div>
+                <div class="card-title">Campus E-Commerce Store</div>
+                <div class="card-desc">Online campus merchandise storefront for official hoodies, technical gadgets, stationery, and books.</div>
+                <a href="shopindex.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="facilities">
+                <div class="card-top">
+                    <div class="card-icon icon-facilities">&#8986;</div>
+                    <span class="tag-category cat-facilities">Facilities</span>
+                </div>
+                <div class="card-title">Interactive Smart Watch Card</div>
+                <div class="card-desc">Dynamic product showcase displaying technical specifications, pricing, and live interactive feature previews.</div>
+                <a href="product.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="facilities">
+                <div class="card-top">
+                    <div class="card-icon icon-facilities">&#128269;</div>
+                    <span class="tag-category cat-facilities">Facilities</span>
+                </div>
+                <div class="card-title">Store Product Search</div>
+                <div class="card-desc">Live searchable catalog enabling fast filtering across campus merchandise, electronics, and accessories.</div>
+                <a href="prosearch.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="facilities">
+                <div class="card-top">
+                    <div class="card-icon icon-facilities">&#128203;</div>
+                    <span class="tag-category cat-facilities">Facilities</span>
+                </div>
+                <div class="card-title">Cart Summary & Checkout</div>
+                <div class="card-desc">Review selected merchandise, calculate itemized subtotals, apply discounts, and proceed to checkout.</div>
+                <a href="shopcart.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="facilities">
+                <div class="card-top">
+                    <div class="card-icon icon-facilities">&#128179;</div>
+                    <span class="tag-category cat-facilities">Facilities</span>
+                </div>
+                <div class="card-title">Secure Payment Gateway</div>
+                <div class="card-desc">Multi-channel payment processor supporting UPI, Net Banking, credit cards, and campus smart wallet tokens.</div>
+                <a href="shoppayment.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <!-- CLUBS & RECREATION -->
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#127881;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">College Events (Riviera 2026)</div>
+                <div class="card-desc">Official schedule and pass bookings for Asia's premier cultural fest alongside the Gravitas tech symposium.</div>
+                <a href="clgEvent.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#127914;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">Cultural & Sports Event Guide</div>
+                <div class="card-desc">Comprehensive list of sports tournaments, hackathons, dance battles, and musical performances.</div>
+                <a href="event.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#128302;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">National Tech Symposium (NTS)</div>
+                <div class="card-desc">Annual national technical paper presentation, coding marathon, and robotics contest registration portal.</div>
+                <a href="NTS.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#127918;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">Campus Gaming Zone (GZ)</div>
+                <div class="card-desc">E-sports arena hub featuring tournament brackets, LAN party announcements, and gaming workstation bookings.</div>
+                <a href="GZ.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#128640;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">Interstellar Astronomy Club</div>
+                <div class="card-desc">Astrophysics & film society page discussing general relativity, black holes, and Christopher Nolan's masterpiece.</div>
+                <a href="Interstellar.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#128081;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">Interstellar Cast Showcase</div>
+                <div class="card-desc">Detailed character profiles of Matthew McConaughey, Anne Hathaway, Jessica Chastain, and robot TARS.</div>
+                <a href="cast.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#127776;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">Interstellar Physics & Story</div>
+                <div class="card-desc">Deep-dive into gravitational time dilation, Gargantua's event horizon, wormholes, and 5D tesseracts.</div>
+                <a href="story.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#9992;&#65039;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">Travel Bucket List Club</div>
+                <div class="card-desc">International student exchange club sharing travel aspirations, study abroad programs, and visa tips.</div>
+                <a href="Traveler.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#127758;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">Travel Destinations Guide</div>
+                <div class="card-desc">Curated guides for global university partner cities: Tokyo, Paris, Zurich, London, and Maldives.</div>
+                <a href="TD.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#128247;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">Travel Photo Gallery</div>
+                <div class="card-desc">Visual photo gallery highlighting student study-abroad expeditions, world heritage sites, and European research trips.</div>
+                <a href="travelphoto.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#127962;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">Interactive Keyboard Campus Tour</div>
+                <div class="card-desc">Unique keyboard-controlled campus gallery using Left/Right arrow keys and Enter key selections.</div>
+                <a href="unicam.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="clubs">
+                <div class="card-top">
+                    <div class="card-icon icon-clubs">&#128444;&#65039;</div>
+                    <span class="tag-category cat-clubs">Clubs & Culture</span>
+                </div>
+                <div class="card-title">UniSphere Master Media Archive</div>
+                <div class="card-desc">Consolidated high-resolution gallery of all campus architecture, library volumes, sports fields, and research labs.</div>
+                <a href="gallery.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <!-- SMART CAMPUS & LABS -->
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#127975;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">Smart Campus ATM Terminal</div>
+                <div class="card-desc">Campus banking simulator with secure PIN validation, micro-transaction processing, and cash withdrawal feedback.</div>
+                <a href="ATM.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#128678;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">Smart Traffic Signal Control</div>
+                <div class="card-desc">Interactive traffic light controller simulation demonstrating automated state transitions for campus vehicle gates.</div>
+                <a href="traffic.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#9925;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">Meteorological Weather Station</div>
+                <div class="card-desc">Live campus weather telemetry widget monitoring ambient temperature, atmospheric humidity, and rainfall indices.</div>
+                <a href="weather.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#128273;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">Unified Central SSO Auth</div>
+                <div class="card-desc">Tabbed modal authentication gateway allowing seamless user switching between Student, Faculty, and Admin logins.</div>
+                <a href="userauth.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#127970;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">Corporate Partner Placement Profile</div>
+                <div class="card-desc">Corporate relations showcase highlighting recruiting partners, technology stacks, and compensation benchmarks.</div>
+                <a href="CP.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#9889;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">Dynamic Search Engine (DSE)</div>
+                <div class="card-desc">Algorithmic search interface querying university knowledge bases, academic notices, and syllabus repositories.</div>
+                <a href="DSE.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#129514;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">Science & Technology Club</div>
+                <div class="card-desc">Student technical society promoting competitive programming, robotics prototyping, and open-source contributions.</div>
+                <a href="SAT.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#128433;&#65039;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">Interactive Mouse Events Lab</div>
+                <div class="card-desc">JavaScript demonstration laboratory capturing mouse-over, mouse-out, coordinate tracking, and click event listeners.</div>
+                <a href="javamouse.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#128221;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">HTML5 Input Types Showcase</div>
+                <div class="card-desc">Comprehensive reference lab exhibiting all modern HTML5 form controls: ranges, color pickers, dates, and datalists.</div>
+                <a href="input_types.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#10024;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">One-X Interactive Experience</div>
+                <div class="card-desc">Experimental web application showcasing progressive interactive styling and dynamic UI components.</div>
+                <a href="onex.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+            <div class="module-card" data-category="smart">
+                <div class="card-top">
+                    <div class="card-icon icon-smart">&#128208;</div>
+                    <span class="tag-category cat-smart">Smart Campus</span>
+                </div>
+                <div class="card-title">Responsive Grid Layout Architecture</div>
+                <div class="card-desc">CSS Grid and modern flexbox layout demonstration validating multi-breakpoint responsive page architectures.</div>
+                <a href="layout1.html" class="card-action">Launch Service <span>&rarr;</span></a>
+            </div>
+
+        </div>
+
+        <!-- Student Attribution Banner -->
+        <div class="student-banner">
+            <div class="student-details">
+                <h3>Designed & Developed by Snehitha Sunkavalli</h3>
+                <p>Register Number: <strong>24MIC0058</strong> | Integrated M.Tech in Computer Science & Engineering</p>
+                <p>School of Computer Science and Engineering (SCOPE), Vellore Institute of Technology (VIT)</p>
+            </div>
+            <a href="Protofolio.html" class="portfolio-btn">View Student Portfolio &rarr;</a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p style="margin-bottom: 6px; color: #cbd5e1; font-weight: 500;">UniSphere Integrated Smart Campus System &copy; 2026 | Vellore Institute of Technology</p>
+        <p style="color: #64748b; font-size: 13px;">Full-Stack Web Development Course Project | Ready for Local XAMPP & Apache Web Hosting</p>
+    </footer>
+
+    <!-- Search and Filter Scripts -->
+    <script>
+        function filterModules() {
+            let query = document.getElementById("moduleSearch").value.toLowerCase();
+            let cards = document.querySelectorAll(".module-card");
+            cards.forEach(card => {
+                let title = card.querySelector(".card-title").innerText.toLowerCase();
+                let desc = card.querySelector(".card-desc").innerText.toLowerCase();
+                let cat = card.getAttribute("data-category").toLowerCase();
+                if (title.includes(query) || desc.includes(query) || cat.includes(query)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+            event.target.classList.add("active");
+            
+            let cards = document.querySelectorAll(".module-card");
+            cards.forEach(card => {
+                if (cat === "all" || card.getAttribute("data-category") === cat) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

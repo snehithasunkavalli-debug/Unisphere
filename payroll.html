@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Payroll Management</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: #f8fafc; color: #1e293b; min-height: 100vh; }
+        .container { max-width: 900px; margin: 40px auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        h1 { color: #1e3a8a; font-size: 28px; margin-bottom: 8px; }
+        .nav-dash { margin-bottom: 25px; display: flex; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; }
+        .nav-dash a { color: #2563eb; text-decoration: none; font-weight: 600; font-size: 14px; padding: 6px 12px; border-radius: 6px; }
+        .nav-dash a:hover { background: #eff6ff; }
+        .nav-dash a.active { background: #1e3a8a; color: white; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 5px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; }
+        .btn-calc { background: #1e3a8a; color: white; padding: 12px 24px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .btn-calc:hover { background: #1d4ed8; }
+        .payslip { margin-top: 30px; border: 2px dashed #93c5fd; border-radius: 12px; padding: 25px; background: #f0fdf4; }
+        .payslip-title { text-align: center; color: #166534; font-size: 20px; font-weight: bold; margin-bottom: 15px; }
+        .pay-table { width: 100%; border-collapse: collapse; }
+        .pay-table td { padding: 8px; border-bottom: 1px solid #bbf7d0; font-size: 14px; }
+        .total-row { font-weight: bold; font-size: 16px; color: #14532d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Staff Payroll & Compensation Portal</h1>
+        <p style="color: #64748b; margin-bottom: 15px;">Monthly salary calculation, payslip breakdown, allowances, and statutory tax deductions.</p>
+
+        <div class="nav-dash">
+            <a href="dashboard.html">&larr; Back to Dashboard</a>
+            <a href="home.html">Home</a>
+            <a href="directory.html">Employee Directory</a>
+            <a href="payroll.html" class="active">Payroll</a>
+            <a href="leaves.html">Leave Requests</a>
+            <a href="reports.html">Reports</a>
+            <a href="Final_Website.html" style="background:#fef3c7; color:#92400e;">UniSphere Portal</a>
+        </div>
+
+        <form id="payrollForm" onsubmit="event.preventDefault(); generateSlip();">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Select Employee ID</label>
+                    <select id="empSelect" onchange="autoFillSalary()">
+                        <option value="EMP1001">EMP1001 - Dr. R. K. Saravanan (Dean)</option>
+                        <option value="EMP1002">EMP1002 - Dr. Anitha Pradeep (Assoc. Dean)</option>
+                        <option value="EMP1003">EMP1003 - Dr. V. Ramanathan (Assoc. Prof)</option>
+                        <option value="EMP1004">EMP1004 - Dr. Shailaja Mohan (Assoc. Prof)</option>
+                        <option value="EMP1005">EMP1005 - Dr. Meenakshi Devi (Asst. Prof)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Pay Month & Year</label>
+                    <input type="text" id="payPeriod" value="October 2026">
+                </div>
+                <div class="form-group">
+                    <label>Basic Pay (INR)</label>
+                    <input type="number" id="basicPay" value="120000">
+                </div>
+                <div class="form-group">
+                    <label>Dearness Allowance (DA %)</label>
+                    <input type="number" id="daRate" value="38">
+                </div>
+                <div class="form-group">
+                    <label>House Rent Allowance (HRA %)</label>
+                    <input type="number" id="hraRate" value="24">
+                </div>
+                <div class="form-group">
+                    <label>Provident Fund (PF %)</label>
+                    <input type="number" id="pfRate" value="12">
+                </div>
+            </div>
+            <button type="submit" class="btn-calc">Generate Official Pay Slip</button>
+        </form>
+
+        <div id="payslipArea" class="payslip" style="display:none;">
+            <div class="payslip-title">Official Monthly Pay Slip - October 2026</div>
+            <table class="pay-table">
+                <tr><td><strong>Employee Name / ID:</strong></td><td id="slipEmp">Dr. R. K. Saravanan (EMP1001)</td></tr>
+                <tr><td><strong>Department / Designation:</strong></td><td id="slipDesig">SCOPE - Professor & Dean</td></tr>
+                <tr><td>Basic Pay:</td><td id="slipBasic">INR 1,20,000</td></tr>
+                <tr><td>Dearness Allowance (DA):</td><td id="slipDA">INR 45,600</td></tr>
+                <tr><td>House Rent Allowance (HRA):</td><td id="slipHRA">INR 28,800</td></tr>
+                <tr><td><strong>Gross Earnings:</strong></td><td id="slipGross" style="font-weight:bold; color:#1e3a8a;">INR 1,94,400</td></tr>
+                <tr><td>Provident Fund (PF Deduction):</td><td id="slipPF">- INR 14,400</td></tr>
+                <tr><td>Professional Tax & TDS:</td><td id="slipTax">- INR 18,200</td></tr>
+                <tr class="total-row"><td><strong>Net Payable Salary:</strong></td><td id="slipNet" style="color:#15803d; font-size:18px;">INR 1,61,800</td></tr>
+            </table>
+            <div style="margin-top:15px; text-align:right;">
+                <button onclick="window.print()" style="background:#16a34a; color:white; padding:8px 16px; border:none; border-radius:6px; cursor:pointer;">Print / Download PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function autoFillSalary() {
+            let emp = document.getElementById("empSelect").value;
+            let salaryMap = {
+                "EMP1001": 150000,
+                "EMP1002": 135000,
+                "EMP1003": 110000,
+                "EMP1004": 105000,
+                "EMP1005": 85000
+            };
+            document.getElementById("basicPay").value = salaryMap[emp] || 100000;
+        }
+
+        function generateSlip() {
+            let basic = parseFloat(document.getElementById("basicPay").value);
+            let da = basic * (parseFloat(document.getElementById("daRate").value) / 100);
+            let hra = basic * (parseFloat(document.getElementById("hraRate").value) / 100);
+            let gross = basic + da + hra;
+            let pf = basic * (parseFloat(document.getElementById("pfRate").value) / 100);
+            let tax = gross * 0.10;
+            let net = gross - pf - tax;
+
+            let empText = document.getElementById("empSelect").options[document.getElementById("empSelect").selectedIndex].text;
+            document.getElementById("slipEmp").innerText = empText;
+            document.getElementById("slipBasic").innerText = "INR " + basic.toLocaleString();
+            document.getElementById("slipDA").innerText = "INR " + da.toLocaleString();
+            document.getElementById("slipHRA").innerText = "INR " + hra.toLocaleString();
+            document.getElementById("slipGross").innerText = "INR " + gross.toLocaleString();
+            document.getElementById("slipPF").innerText = "- INR " + pf.toLocaleString();
+            document.getElementById("slipTax").innerText = "- INR " + tax.toLocaleString();
+            document.getElementById("slipNet").innerText = "INR " + net.toLocaleString();
+
+            document.getElementById("payslipArea").style.display = "block";
+        }
+    </script>
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>

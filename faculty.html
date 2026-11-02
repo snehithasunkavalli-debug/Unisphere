@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Directory - SCOPE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: #f1f5f9; color: #1e293b; min-height: 100vh; }
+        .container { max-width: 1000px; margin: 40px auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        h1 { color: #1e3a8a; font-size: 32px; margin-bottom: 8px; }
+        .subtitle { color: #64748b; font-size: 16px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; }
+        .nav-links { margin-bottom: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+        .nav-links a { background: #e0e7ff; color: #3730a3; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.2s; }
+        .nav-links a:hover { background: #c7d2fe; }
+        .nav-links a.active { background: #3730a3; color: white; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .faculty-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; display: flex; gap: 15px; align-items: flex-start; }
+        .avatar { width: 60px; height: 60px; border-radius: 50%; background: #3b82f6; color: white; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; flex-shrink: 0; }
+        .faculty-info h3 { font-size: 18px; color: #1e3a8a; margin-bottom: 4px; }
+        .faculty-info .title { color: #2563eb; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+        .faculty-info p { color: #475569; font-size: 13px; margin-bottom: 4px; line-height: 1.4; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SCOPE Faculty Directory</h1>
+        <p class="subtitle">Distinguished Professors, Researchers, and Academic Mentors</p>
+
+        <div class="nav-links">
+            <a href="DOCS.html">&larr; Back to SCOPE Main</a>
+            <a href="overview.html">Overview</a>
+            <a href="faculty.html" class="active">Faculty Directory</a>
+            <a href="programs.html">Academic Programs</a>
+            <a href="research.html">Research & Labs</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="Final_Website.html" style="background:#fef3c7; color:#92400e;">UniSphere Portal</a>
+        </div>
+
+        <div class="grid-2">
+            <div class="faculty-card">
+                <div class="avatar" style="background:#1e3a8a;">RK</div>
+                <div class="faculty-info">
+                    <h3>Dr. R. K. Saravanan</h3>
+                    <div class="title">Professor & Dean, SCOPE</div>
+                    <p><strong>Education:</strong> Ph.D. in High Performance Cloud Computing</p>
+                    <p><strong>Research:</strong> Distributed Cloud Systems, Hadoop Architectures</p>
+                    <p><strong>Email:</strong> dean.scope@vit.ac.in | <strong>Cabin:</strong> SJT-410</p>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <div class="avatar" style="background:#0284c7;">AP</div>
+                <div class="faculty-info">
+                    <h3>Dr. Anitha Pradeep</h3>
+                    <div class="title">Professor & Associate Dean</div>
+                    <p><strong>Education:</strong> Ph.D. in Artificial Intelligence & ML</p>
+                    <p><strong>Research:</strong> Computer Vision, Deep Learning, Medical Imaging</p>
+                    <p><strong>Email:</strong> anitha.pradeep@vit.ac.in | <strong>Cabin:</strong> SJT-412</p>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <div class="avatar" style="background:#059669;">VR</div>
+                <div class="faculty-info">
+                    <h3>Dr. V. Ramanathan</h3>
+                    <div class="title">Associate Professor</div>
+                    <p><strong>Education:</strong> Ph.D. in Cloud Security & Cryptography</p>
+                    <p><strong>Research:</strong> Cloud Computing Methodologies, Zero-Trust</p>
+                    <p><strong>Email:</strong> v.ramanathan@vit.ac.in | <strong>Cabin:</strong> TT-302</p>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <div class="avatar" style="background:#7c3aed;">SM</div>
+                <div class="faculty-info">
+                    <h3>Dr. Shailaja Mohan</h3>
+                    <div class="title">Associate Professor</div>
+                    <p><strong>Education:</strong> Ph.D. in Web Technologies & Software Architecture</p>
+                    <p><strong>Research:</strong> Full-Stack Frameworks, Micro-Frontends</p>
+                    <p><strong>Email:</strong> shailaja.m@vit.ac.in | <strong>Cabin:</strong> TT-315</p>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <div class="avatar" style="background:#d97706;">KN</div>
+                <div class="faculty-info">
+                    <h3>Dr. K. N. Karthikeyan</h3>
+                    <div class="title">Assistant Professor (Sr.)</div>
+                    <p><strong>Education:</strong> Ph.D. in Big Data Analytics</p>
+                    <p><strong>Research:</strong> Apache Spark, Hadoop Ecosystems, Kafka</p>
+                    <p><strong>Email:</strong> karthik.kn@vit.ac.in | <strong>Cabin:</strong> SJT-208</p>
+                </div>
+            </div>
+
+            <div class="faculty-card">
+                <div class="avatar" style="background:#dc2626;">MD</div>
+                <div class="faculty-info">
+                    <h3>Dr. Meenakshi Devi</h3>
+                    <div class="title">Assistant Professor</div>
+                    <p><strong>Education:</strong> Ph.D. in Internet of Things & Edge AI</p>
+                    <p><strong>Research:</strong> Smart City IoT, Embedded Protocols</p>
+                    <p><strong>Email:</strong> meenakshi.devi@vit.ac.in | <strong>Cabin:</strong> SJT-212</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>

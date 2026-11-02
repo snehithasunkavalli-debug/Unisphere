@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniSphere - Master Media Gallery</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: #0f172a; color: #f8fafc; min-height: 100vh; }
+        .header { background: #1e293b; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; }
+        .header a { color: #60a5fa; text-decoration: none; font-weight: 600; font-size: 14px; margin-left: 15px; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        h1 { font-size: 36px; text-align: center; margin-bottom: 8px; color: #f8fafc; }
+        p.sub { text-align: center; color: #94a3b8; margin-bottom: 35px; }
+        .filter-nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .filter-btn { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 14px; transition: 0.3s; }
+        .filter-btn:hover, .filter-btn.active { background: #3b82f6; color: white; border-color: #3b82f6; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .gallery-item { position: relative; border-radius: 12px; overflow: hidden; background: #1e293b; border: 1px solid #334155; transition: 0.3s; }
+        .gallery-item:hover { transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border-color: #60a5fa; }
+        .gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .gallery-caption { padding: 12px 15px; }
+        .gallery-caption h4 { font-size: 15px; color: #f8fafc; margin-bottom: 4px; }
+        .gallery-caption span { font-size: 12px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <strong style="font-size:20px;">UniSphere Campus Gallery</strong>
+            <span style="color:#94a3b8; font-size:13px; margin-left:10px;">Visual Tour of Campus, Facilities & Global Exchange</span>
+        </div>
+        <div>
+            <a href="Final_Website.html">Portal Hub</a>
+            <a href="home.html">Home</a>
+            <a href="unicam.html">Keyboard Tour</a>
+            <a href="travelphoto.html">Travel Album</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Master Media Showcase</h1>
+        <p class="sub">A unified photographic archive of academic blocks, central library, smart facilities, and international travel exchange.</p>
+
+        <div class="filter-nav">
+            <button class="filter-btn active" onclick="filterGallery('all')">All Images</button>
+            <button class="filter-btn" onclick="filterGallery('campus')">Campus & Academic</button>
+            <button class="filter-btn" onclick="filterGallery('library')">Central Library</button>
+            <button class="filter-btn" onclick="filterGallery('travel')">International Exchange</button>
+            <button class="filter-btn" onclick="filterGallery('space')">Astronomy & Entertainment</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Campus -->
+            <div class="gallery-item" data-cat="campus"><img src="campus1.jpg"> <div class="gallery-caption"><h4>Academic Quadrangle</h4><span>Campus & Architecture</span></div></div>
+            <div class="gallery-item" data-cat="campus"><img src="campus2.jpg"> <div class="gallery-caption"><h4>Auditorium & Lawns</h4><span>Student Events Arena</span></div></div>
+            <div class="gallery-item" data-cat="campus"><img src="campus3.jpg"> <div class="gallery-caption"><h4>Technology Tower</h4><span>Research & Laboratories</span></div></div>
+            <div class="gallery-item" data-cat="campus"><img src="hosp.png"> <div class="gallery-caption"><h4>CarePlus Hospital</h4><span>University Health Center</span></div></div>
+
+            <!-- Library -->
+            <div class="gallery-item" data-cat="library"><img src="books.jpg"> <div class="gallery-caption"><h4>Circulation Stacks</h4><span>300,000+ Print Volumes</span></div></div>
+            <div class="gallery-item" data-cat="library"><img src="digitallibrary.jpg"> <div class="gallery-caption"><h4>Digital Research Center</h4><span>Online Journal Portals</span></div></div>
+            <div class="gallery-item" data-cat="library"><img src="issuebooks.jpg"> <div class="gallery-caption"><h4>Circulation Desk</h4><span>Automated RFID Issue</span></div></div>
+            <div class="gallery-item" data-cat="library"><img src="members.jpg"> <div class="gallery-caption"><h4>Study Lounges</h4><span>Collaborative Workspaces</span></div></div>
+
+            <!-- Travel -->
+            <div class="gallery-item" data-cat="travel"><img src="paris.jpg"> <div class="gallery-caption"><h4>Paris Exchange</h4><span>Study Abroad France</span></div></div>
+            <div class="gallery-item" data-cat="travel"><img src="Tokyo.jpeg"> <div class="gallery-caption"><h4>Tokyo Tech Tour</h4><span>Robotics & AI Japan</span></div></div>
+            <div class="gallery-item" data-cat="travel"><img src="Switzerland.jpeg"> <div class="gallery-caption"><h4>Swiss Alps Research</h4><span>CERN & Geneva Exchange</span></div></div>
+            <div class="gallery-item" data-cat="travel"><img src="Maldives.jpeg"> <div class="gallery-caption"><h4>Marine Biology Studies</h4><span>Ecology & Marine Fieldwork</span></div></div>
+            <div class="gallery-item" data-cat="travel"><img src="london.jpg"> <div class="gallery-caption"><h4>London Tech Summit</h4><span>Global Engineering Exchange</span></div></div>
+
+            <!-- Space & Entertainment -->
+            <div class="gallery-item" data-cat="space"><img src="space.jpg"> <div class="gallery-caption"><h4>Cosmic Nebula</h4><span>Astronomy Club Archives</span></div></div>
+            <div class="gallery-item" data-cat="space"><img src="Interstellar.jpg"> <div class="gallery-caption"><h4>Interstellar Cinema Club</h4><span>Astrophysics in Cinema</span></div></div>
+            <div class="gallery-item" data-cat="space"><img src="Game.jpg"> <div class="gallery-caption"><h4>Campus Gaming Zone</h4><span>E-Sports & Arcade Arena</span></div></div>
+            <div class="gallery-item" data-cat="space"><img src="watch.jpg"> <div class="gallery-caption"><h4>Smart Watch Merchandise</h4><span>Campus Tech Store</span></div></div>
+        </div>
+    </div>
+
+    <script>
+        function filterGallery(category) {
+            document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+            event.target.classList.add("active");
+            let items = document.querySelectorAll(".gallery-item");
+            items.forEach(item => {
+                if (category === "all" || item.getAttribute("data-cat") === category) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>

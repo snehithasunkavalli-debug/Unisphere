@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Details</h1>
+        <form action="cart.html">
+            <label>Payment Method</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="payment" value="credit" required>
+                    Credit Card
+                </label>
+                <label>
+                    <input type="radio" name="payment" value="debit">
+                    Debit Card
+                </label>
+                <label>
+                    <input type="radio" name="payment" value="upi">
+                    UPI
+                </label>
+                <label>
+                    <input type="radio" name="payment" value="netbanking">
+                    Net Banking
+                </label>
+                <label>
+                    <input type="radio" name="payment" value="cod">
+                    Cash on Delivery
+                </label>
+            </div>
+            <label for="holder">Card Holder Name</label>
+            <input type="text" id="holder" name="holder" placeholder="Enter card holder name">
+            <label for="card">Card Number</label>
+            <input type="password" id="card" name="card" placeholder="Enter card number">
+            <label for="expiry">Expiry Date</label>
+            <input type="month" id="expiry" name="expiry">
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" name="cvv" placeholder="Enter CVV" maxlength="3">
+            <label for="upi">UPI ID</label>
+            <input type="text" id="upi" name="upi" placeholder="example@upi">
+            <label class="terms">
+                <input type="checkbox" name="terms" required>
+                I agree to the Terms and Conditions
+            </label>
+            <div class="buttons">
+                <input type="submit" value="View Cart">
+                <a href="customer.html" class="cancel">Back</a>
+            </div>
+        </form>
+    </div>
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>

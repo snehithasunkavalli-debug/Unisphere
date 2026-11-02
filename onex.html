@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Exam</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .option {
+            display: block;
+            width: 300px;
+            margin: 10px auto;
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .selected {
+            background-color: lightblue;
+        }
+        #submit {
+            padding: 10px 20px;
+            margin-top: 15px;
+        }
+        #submit:hover {
+            background-color: lightgreen;
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Online Exam</h2>
+    <p>What is the capital of India?</p>
+    <div class="option">Mumbai</div>
+    <div class="option">New Delhi</div>
+    <div class="option">Chennai</div>
+    <div class="option">Kolkata</div>
+    <button id="submit">Submit</button>
+    <p id="message"></p>
+    <script>
+        const options = document.querySelectorAll(".option");
+        const submit = document.getElementById("submit");
+        const message = document.getElementById("message");
+        let selectedOption = null;
+        options.forEach(function(option) {
+            option.addEventListener("click", function() {
+                options.forEach(function(item) {
+                    item.classList.remove("selected");
+                });
+                option.classList.add("selected");
+                selectedOption = option;
+            });
+        });
+        function submitAnswer() {
+            if (selectedOption) {
+                message.textContent = "Answer Submitted Successfully";
+            } else {
+                message.textContent = "Please select an answer";
+            }
+        }
+        submit.addEventListener("click", submitAnswer);
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                submitAnswer();
+            }
+        });
+    </script>
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>

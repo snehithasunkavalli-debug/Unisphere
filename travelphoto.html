@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 40px;
+        }
+        img {
+            width: 500px;
+            height: 300px;
+            object-fit: cover;
+        }
+        #destination {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Travel Photo Gallery</h2>
+    <img id="travelImage" src="paris.jpg" alt="Travel Destination">
+    <p id="destination"></p>
+    <script>
+        const destinations = [
+            { image: "paris.jpg", name: "Paris" },
+            { image: "london.jpg", name: "London" },
+            { image: "tokyo.jpg", name: "Tokyo" }
+        ];
+        let index = 0;
+        const travelImage = document.getElementById("travelImage");
+        const destination = document.getElementById("destination");
+        document.addEventListener("keydown", function(event) {
+            if (event.key.toLowerCase() === "n") {
+                index = (index + 1) % destinations.length;
+                travelImage.src = destinations[index].image;
+                destination.textContent = "";
+            } else if (event.key.toLowerCase() === "p") {
+                index = (index - 1 + destinations.length) % destinations.length;
+                travelImage.src = destinations[index].image;
+                destination.textContent = "";
+            } else if (event.code === "Space") {
+                destination.textContent = destinations[index].name;
+            }
+        });
+    </script>
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Signal</title>
+    <style>
+        .signal {
+            width: 100px;
+            padding: 15px;
+            background-color: black;
+            border-radius: 10px;
+        }
+
+        .light {
+            width: 60px;
+            height: 60px;
+            margin: 10px auto;
+            border-radius: 50%;
+        }
+
+        #red {
+            background-color: red;
+        }
+
+        #yellow {
+            background-color: yellow;
+        }
+
+        #green {
+            background-color: green;
+        }
+
+        #message {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signal">
+        <div class="light" id="red"
+             onmouseover="showMessage('STOP')"
+             onmouseout="restore()"></div>
+
+        <div class="light" id="yellow"
+             onmouseover="showMessage('READY')"
+             onmouseout="restore()"></div>
+
+        <div class="light" id="green"
+             onmouseover="showMessage('GO')"
+             onmouseout="restore()"></div>
+    </div>
+
+    <p id="message"></p>
+
+    <script>
+        function showMessage(text) {
+            document.getElementById("message").innerHTML = text;
+        }
+
+        function restore() {
+            document.getElementById("message").innerHTML = "";
+        }
+    </script>
+
+
+<!-- UniSphere Global Navigation Hub Badge -->
+<a href="Final_Website.html" id="unisphereFloatingBadge" style="position:fixed; bottom:22px; right:22px; background:linear-gradient(135deg, #1e3a8a, #2563eb); color:#ffffff; padding:11px 20px; border-radius:30px; font-weight:700; font-size:13px; text-decoration:none; box-shadow:0 8px 24px rgba(30,58,138,0.35); z-index:999999; font-family:'Segoe UI', Arial, sans-serif; display:flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s ease;">
+    <span style="font-size:16px;">&#127969;</span> UniSphere Portal
+</a>
+
+</body>
+</html>
